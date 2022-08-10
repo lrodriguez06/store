@@ -1,0 +1,38 @@
+<%= form_with(model: banner) do |form| %>
+  <% if banner.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(banner.errors.count, "error") %> prohibited this banner from being saved:</h2>
+
+      <ul>
+        <% banner.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :fecha, style: "display: block" %>
+    <%= form.date_field :fecha %>
+  </div>
+
+  <div>
+    <%= form.label :vigencia, style: "display: block" %>
+    <%= form.date_field :vigencia %>
+  </div>
+
+  <div>
+    <%= form.label :promocion, style: "display: block" %>
+    <%= form.check_box :promocion %>
+  </div>
+
+  <div>
+    <%= form.label :image, style: "display: block" %>
+    <%= form.file_field :image %>
+  </div>
+  <br>
+  <div>
+    <%= form.submit "Guardar", class: "btn btn-success" %>
+    <%= link_to "Regresar", banners_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>
