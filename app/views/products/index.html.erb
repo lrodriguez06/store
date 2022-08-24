@@ -1,0 +1,43 @@
+<br><br>
+<div class="container">
+
+  <div class="card">
+    <div class="card-header">
+      <h1>Listado de Productos</h1>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Imagen</th>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Precio</th>
+            <th>Existencia</th>
+            <th>Categoria</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.each do |product| %>
+            <tr>
+              <td><%= image_tag(product.image, style: "max-width: 60%") if product.image.attached? %></td>
+              <td><%= product.codigo %></td>
+              <td><%= product.nombre %></td>
+              <td><%= product.descripcion %></td>
+              <td><%= product.precio %></td>
+              <td><%= product.existencia %></td>
+              <td><%= product.category.nombre %></td>
+              <td><%= link_to "Modificar", edit_product_path(product), class: "btn btn-secondary" %></td>
+              <td><%= button_to "Eliminar", product, method: :delete, class: "btn btn-danger" %>
+              
+            </tr>
+          <% end %>
+        </tbody>  
+      </table>  
+      <br>
+      <%= link_to "Nuevo", new_product_path, class: "btn btn-primary" %>  
+    </div>
+  </div>  
+</div>
