@@ -1,0 +1,35 @@
+<br><br><br><br>
+<div class="container">
+  <p style="color: green"><%= notice %></p>
+  
+  <div class="card">
+    <div class="card-header">
+      <h1>Listado de Categorias</h1>
+    </div>
+    <div class"card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Clave</th>
+            <th>Nombre</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+              <td><%= category.clave %></td>
+              <td><%= category.nombre %></td>
+              <td><%= link_to "Modificar", edit_category_path(category), class: "btn btn-secondary" %> 
+              <td><%= button_to "Eliminar", category, method: :delete, class: "btn btn-danger" %>
+
+            </tr>
+          <% end %>
+        <tbody>
+      </table>
+      <br>
+      <%= link_to "Nuevo", new_category_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
+
