@@ -1,0 +1,45 @@
+<br><br>
+<div class="container">
+
+  <div class="card">
+    <div class="card-header">
+      <h1>Confirmacion de pedido</h1>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Importe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% total = 0 %>
+          <% @carrito.each do |cart| %>
+            <% importe = cart.cantidad * cart.precio %>
+            <% total += importe %>
+            <tr>
+              <td width="20%"><%= image_tag(cart.product.image, style: "max-width: 60%") if cart.product.image.attached? %></td>
+              <td width="10%"><%= cart.product.codigo %></td>
+              <td width="40%"><%= cart.product.nombre %></td>
+              <td width="10%" class="text-center"><%= cart.cantidad %></td>
+              <td width="10%" class="text-center"><%= cart.precio %></td>
+              <td width="10%" class="text-end"><%= importe %></td>
+            </tr>
+          <% end %>
+            <tr>
+                <td colspan="5" class="text-end fw-bold fs-5">TOTAL A Pagar</td>
+                <td class="text-end fw-bold fs-5"><%= total %></td>
+            </tr> 
+        </tbody>  
+      </table>  
+      <br>
+      <%= link_to "Confirmar y Pagar", confirma_pedido_path(current_user.id), class: "btn btn-primary" %>
+      <%= link_to "Cancelar", vaciar_carrito_path(current_user.id), class: "btn btn-danger" %>  
+    </div>
+  </div>  
+</div>
