@@ -1,0 +1,53 @@
+<%= form_with(model: product) do |form| %>
+  <% if product.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :codigo, style: "display: block" %>
+    <%= form.text_field :codigo %>
+  </div>
+
+  <div>
+    <%= form.label :nombre, style: "display: block" %>
+    <%= form.text_field :nombre %>
+  </div>
+
+  <div>
+    <%= form.label :descripcion, style: "display: block" %>
+    <%= form.text_field :descripcion %>
+  </div>
+
+  <div>
+    <%= form.label "Imagen", style: "display: block" %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div>
+    <%= form.label :precio, style: "display: block" %>
+    <%= form.text_field :precio %>
+  </div>
+
+  <div>
+    <%= form.label :existencia, style: "display: block" %>
+    <%= form.number_field :existencia %>
+  </div>
+
+  <div>
+    <%= form.label "Categoria", style: "display: block" %>
+    <%= form.collection_select :category_id, Category.order(:nombre), :id, :nombre %>
+  </div>
+  <br>
+  <div>
+    <%= form.submit %>
+    | <%= link_to "Regresar", products_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>
