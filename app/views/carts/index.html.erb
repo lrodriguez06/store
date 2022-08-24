@@ -1,0 +1,44 @@
+<br><br>
+<div class="container">
+
+  <div class="card">
+    <div class="card-header">
+      <h1>Mi Carrito</h1>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @carts.each do |cart| %>
+            <tr>
+              <td><%= image_tag(cart.product.image, style: "max-width: 60%") if cart.product.image.attached? %></td>
+              <td><%= cart.product.codigo %></td>
+              <td><%= cart.product.nombre %></td>
+              <td><%= cart.precio %></td>
+              <td><%= link_to '<i class="fa-solid fa-circle-minus"></i>'.html_safe, disminuye_cantidad_path(cart.id) %> &nbsp;<%= cart.cantidad %>&nbsp;<%= link_to '<i class="fa-solid fa-circle-plus"></i>'.html_safe, aumenta_cantidad_path(cart.id) %></td>
+              <td><%#= link_to "Modificar", edit_product_path(product), class: "btn btn-secondary" %></td>
+              <td><%= button_to "Eliminar", cart, method: :delete, class: "btn btn-danger" %>
+              
+            </tr>
+          <% end %>
+        </tbody>  
+      </table>  
+      <br>
+      <%= link_to "Pagar", valida_cliente_path(current_user.id), class: "btn btn-primary" %>
+      <%= link_to "Ver mas productos", buscar_producto_path, class: "btn btn-secondary" %>
+      <%= link_to "Vaciar Carrito", vaciar_carrito_path(current_user.id), class: "btn btn-danger" %>  
+    </div>
+  </div>  
+</div>
+
+
+
