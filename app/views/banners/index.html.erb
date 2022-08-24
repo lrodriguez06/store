@@ -1,0 +1,36 @@
+<br><br><br><br>
+<div class="container">
+  <p style="color: green"><%= notice %></p>
+  
+  <div class="card">
+    <div class="card-header">
+      <h1>Banners</h1>
+    </div>
+    <div class"card-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Vencimiento</th>
+            <th>Promocion</th>
+            <th>Imagen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @banners.each do |banner| %>
+            <tr>
+              <td><%= banner.fecha %></td>
+              <td><%= banner.vigencia %></td>
+              <td><%= banner.promocion ? "Si" : "No" %></td>
+              <td><%= image_tag(banner.image, style: "max-width: 20%") if banner.image.attached? %></td>
+            </tr>
+          <% end %>
+
+        <tbody>
+      </table>
+      <br>
+      <%= link_to "Nuevo", new_banner_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+
+</div>
