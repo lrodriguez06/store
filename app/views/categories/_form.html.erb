@@ -1,0 +1,33 @@
+<%= form_with(model: category) do |form| %>
+  <% if category.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+        <% category.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :clave, style: "display: block" %>
+    <%= form.text_field :clave %>
+  </div>
+
+  <div>
+    <%= form.label :nombre, style: "display: block" %>
+    <%= form.text_field :nombre %>
+  </div>
+
+  <div>
+    <%= form.label :activa, style: "display: block" %>
+    <%= form.check_box :activa %>
+  </div>
+  <br><br>
+  <div>
+    <%= form.submit  "Guardar", class: "btn btn-primary" %>
+      <%= link_to "Regresar", categories_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>
